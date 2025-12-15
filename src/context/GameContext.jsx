@@ -11,6 +11,7 @@ const initialState = {
     currentPhase: null, // Specific to mode (e.g., 'puzzle', 'sit', 'write')
     timer: 0, // Seconds remaining
     fightId: null, // Firestore Doc ID
+    history: [], // Log of events
 };
 
 // Actions
