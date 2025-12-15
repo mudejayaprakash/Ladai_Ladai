@@ -4,7 +4,7 @@ import { useGame } from '../context/GameContext';
 import { useVoiceInput } from '../hooks/useVoiceInput';
 import { TimerDisplay } from '../components/Timer';
 import { Button } from '../components/Button';
-import { Pause, Play, Hand, MessageSquare, Clock, Mic, MicOff } from 'lucide-react';
+import { Pause, Play, Hand, MessageSquare, Clock, Mic, MicOff, MessageCircle } from 'lucide-react';
 import { summarizeTurn, suggestQuestions } from '../services/llm';
 
 const GameArena = () => {
