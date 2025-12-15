@@ -25,12 +25,22 @@ const GameArena = () => {
         setLoadingSuggestions(false);
     };
 
-    // Redirect if no mode selected
+    // Redirect logic safety
     useEffect(() => {
-        if (!gameMode) {
-            navigate('/modes');
-        }
-    }, [gameMode, navigate]);
+        // Only redirect if absolutely necessary after a timeout, 
+        // to avoid instant loops if state is slow to hydrate? 
+        // Better: Show a "Go Back" button if mode is invalid.
+    }, [gameMode]);
+
+    if (!gameMode) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white p-6 text-center">
+                <h2 className="text-2xl font-bold text-game-danger mb-4">No Game Mode Selected</h2>
+                <p className="text-slate-400 mb-8">Please return to the selection menu.</p>
+                <Button onClick={() => navigate('/modes')}>Select Mode</Button>
+            </div>
+        );
+    }
 
     // Initial Timer Setup based on Mode
     useEffect(() => {
@@ -91,7 +101,7 @@ const GameArena = () => {
 
                 {/* Visual Timer */}
                 <div className="scale-110 md:scale-150 mt-4 md:mt-0">
-                    <TimerDisplay totalTime={gameMode === '1010' ? 600 : 100} />
+                    <TimerDisplay totalTime={gameMode === '1010' ? 600 : (gameMode === '10101' ? 180 : 101)} />
                 </div>
 
                 {/* Voice Feedback Area */}
@@ -127,7 +137,7 @@ const GameArena = () => {
                 </div>
 
                 {/* Feature Buttons */}
-                <div className="grid grid-cols-3 gap-2 w-full max-w-lg mt-4 md:mt-8 pb-4">
+                <div className="grid grid-cols-2 gap-4 w-full max-w-lg mt-4 md:mt-8 pb-4">
                     <button
                         onClick={() => handleBorrowTime(1)}
                         className="p-4 bg-slate-800 rounded-xl hover:bg-slate-700 transition flex flex-col items-center gap-2"
