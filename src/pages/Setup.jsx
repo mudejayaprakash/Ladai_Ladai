@@ -10,7 +10,7 @@ import { User, Calendar, MapPin, MessageCircle } from 'lucide-react';
 
 const Setup = () => {
     const navigate = useNavigate();
-    const { setPlayer } = useGame();
+    const { setPlayer, setMode } = useGame();
     const [step, setStep] = useState(1); // 1: Demographics, 2: Mode/Lobby
     const [loading, setLoading] = useState(false);
 
@@ -136,7 +136,14 @@ const Setup = () => {
                             <Button onClick={() => alert("Join logic WIP")} variant="outline" className="w-full py-4 text-lg">
                                 Join Existing Fight
                             </Button>
-                            <Button onClick={() => navigate('/game')} variant="secondary" className="w-full py-4 text-lg">
+                            <Button
+                                onClick={() => {
+                                    setMode('10'); // Zen Mode
+                                    navigate('/game');
+                                }}
+                                variant="secondary"
+                                className="w-full py-4 text-lg"
+                            >
                                 Solo Mode (Fight the Self)
                             </Button>
                         </div>
