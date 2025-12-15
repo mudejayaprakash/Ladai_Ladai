@@ -35,7 +35,7 @@ const ModeSelection = () => {
     };
 
     return (
-        <div className="min-h-screen p-8 flex flex-col items-center justify-center">
+        <div className="min-h-screen p-4 md:p-8 flex flex-col items-center justify-center">
             <div className="text-center mb-12 max-w-2xl">
                 <h2 className="text-4xl font-bold mb-4">Choose Your Arena</h2>
                 <p className="text-slate-400">Select a game mode that fits the intensity and available time for your conflict.</p>

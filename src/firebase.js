@@ -5,13 +5,18 @@ import { getAuth } from "firebase/auth";
 // TODO: Replace with your actual Firebase project configuration
 // You can get these from the Firebase Console -> Project Settings -> General -> Your Apps
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "PLACEHOLDER_KEY",
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "placeholder.firebaseapp.com",
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "placeholder-id",
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "placeholder.appspot.com",
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "00000000000",
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:00000000000:web:00000000000000"
+    apiKey: "AIzaSyBgMAAGGEZNKPswSYPwFoYcP2AJFQxRhyk",
+    authDomain: "ladai-ladai.firebaseapp.com",
+    projectId: "ladai-ladai",
+    storageBucket: "ladai-ladai.firebasestorage.app",
+    messagingSenderId: "88711366120",
+    appId: "1:88711366120:web:971a5116eebfbc23d2505d",
+    measurementId: "G-R6ZTX7DGLC"
 };
+
+// Debugging helper: Check if keys are loaded
+// Configured with provided keys
+
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

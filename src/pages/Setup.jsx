@@ -40,7 +40,8 @@ const Setup = () => {
             setStep(2);
         } catch (error) {
             console.error(error);
-            alert("Failed to sign in. Please try again.");
+            const errorMessage = error.message || "Unknown error occurred";
+            alert(`Failed to sign in: ${errorMessage}\nCheck your internet connection or API keys.`);
         } finally {
             setLoading(false);
         }
@@ -94,7 +95,7 @@ const Setup = () => {
                                 value={formData.dob} onChange={handleChange} required
                             />
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Input
                                     id="gender" name="gender" label="Gender" placeholder="Self-identified"
                                     value={formData.gender} onChange={handleChange}

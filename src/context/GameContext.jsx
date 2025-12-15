@@ -23,6 +23,7 @@ const ACTIONS = {
     END_GAME: 'END_GAME',
     UPDATE_TIMER: 'UPDATE_TIMER',
     SET_PHASE: 'SET_PHASE',
+    ADD_LOG: 'ADD_LOG',
 };
 
 // Reducer
@@ -37,7 +38,12 @@ function gameReducer(state, action) {
                 }
             };
         case ACTIONS.SET_MODE:
-            return { ...state, gameMode: action.payload };
+            return {
+                ...state,
+                gameMode: action.payload,
+                gameState: 'setup', // Reset game state when mode changes
+                timer: 0 // Reset timer
+            };
         case ACTIONS.START_GAME:
             return { ...state, gameState: 'playing' };
         case ACTIONS.PAUSE_GAME:
@@ -50,6 +56,15 @@ function gameReducer(state, action) {
             return { ...state, timer: action.payload };
         case ACTIONS.SET_PHASE:
             return { ...state, currentPhase: action.payload };
+        case ACTIONS.ADD_LOG:
+            return {
+                ...state,
+                history: [...(state.history || []), {
+                    timestamp: new Date(),
+                    content: action.payload,
+                    type: 'voice'
+                }]
+            };
         default:
             return state;
     }
@@ -72,6 +87,7 @@ export const GameProvider = ({ children }) => {
         endGame: () => dispatch({ type: ACTIONS.END_GAME }),
         updateTimer: (time) => dispatch({ type: ACTIONS.UPDATE_TIMER, payload: time }),
         setPhase: (phase) => dispatch({ type: ACTIONS.SET_PHASE, payload: phase }),
+        addLog: (content) => dispatch({ type: ACTIONS.ADD_LOG, payload: content }),
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
